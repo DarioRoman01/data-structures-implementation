@@ -72,7 +72,7 @@ class MyArray:
 
 
 if __name__ == "__main__":
-    
+    """Testing the implementation."""
     array = MyArray()
     array.push('jose')
     array.push('adriana')
