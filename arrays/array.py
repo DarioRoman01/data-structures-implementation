@@ -44,9 +44,7 @@ class MyArray:
         return self.data
 
 
-
     # Utilitie functions:
-    
     def unshift_index(self):
         """moves items to next index."""
         i = self.length
@@ -69,36 +67,3 @@ class MyArray:
 
         del self.data[self.length - 1]
         self.length -= 1
-
-
-if __name__ == "__main__":
-    """Testing the implementation."""
-    array = MyArray()
-    array.push('jose')
-    array.push('adriana')
-    array.push('dario')
-    array.push('diego')
-    
-    print(array.data)
-    # should return all names
-
-    print(array.get(2))
-    # should return dario
-
-    array.pop()
-    # should delete diego
-
-    array.remove(0)
-    # should delete jose
-
-    array.unshift('wily')
-    # Should add willy in the first position of the array
-
-    print(array.data)
-    # should return only dario, adriana & willy
-
-    array.shift()
-    # Should delete willy
-
-    print(array.data)
-    # Should return only adriana and dario
