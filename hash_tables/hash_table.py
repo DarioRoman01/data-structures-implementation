@@ -3,8 +3,8 @@
 class HashTable:
     def __init__(self):
         """Constructor."""
-        self.MAX = 100
-        self.arr = [None for i in range(self.MAX)]
+        self.MAX = 3
+        self.arr = [[] for i in range(self.MAX)]
 
 
     def get_hash(self, key):
@@ -14,31 +14,43 @@ class HashTable:
             h += ord(char)
         return h % self.MAX
 
+
     def __setitem__(self, key, value):
+        """Add item to the table."""
         h = self.get_hash(key)
-        self.arr[h] = value
+        found = False
+        for idx, element in enumerate(self.arr[h]):
+            if len(element)==2 and element[0]==key:
+                self.arr[h][idx] = (key, value)
+                found = True
+                break
+
+        if not found:
+            self.arr[h].append((key, value))
+
 
     def __getitem__(self, key):
         """Get the element by key."""
         h = self.get_hash(key)
-        return self.arr[h]
+        for element in self.arr[h]:
+            if element[0] == key:
+                return element[1]
+
         
     def __delitem__(self, key):
         """Delete element by key."""
         h = self.get_hash(key)
-        self.arr[h] = None
+        for index, element in enumerate(self.arr[h]):
+            if element[0] == key:
+                del self.arr[h][index]
+
 
 if __name__ == "__main__":
     """Testing implementation."""
     t = HashTable()
-    t['march 6'] = 130
-    t['december 24'] = 235
-    t['march 19'] = 190
-    t['july 9'] = 209
-    t['february 16'] = 938
-
-    print(t['february 16'])
-    print(t['march 19'])
-    print(t['march 6'])
-    del t['march 6']
-    print(t['march 6'])
+    t["march 6"] = 130
+    t["march 17"] = 204
+    t["march 24"] = 210
+    t["march 30"] = 207
+    print(t.arr[0])
+    

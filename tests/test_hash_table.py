@@ -27,3 +27,12 @@ class TestHashTable(unittest.TestCase):
         ht['march 19'] = 190
         del ht['march 6']
         self.assertIsNone(ht['march 6'])
+
+    def test_colission_handler(self):
+        """Test that in one position can be more than one element."""
+        ht = self.hash_table
+        ht["march 6"] = 130
+        ht["march 17"] = 204
+        ht["march 24"] = 210
+        ht["march 30"] = 207
+        self.assertEqual(len(ht.arr[0]), 3)
