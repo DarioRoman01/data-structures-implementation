@@ -1,6 +1,8 @@
 """nyc_weather.csv contains new york city weather for first few days in the month of January. Write a program that can answer following,
  + What was the average temperature in first week of Jan
- + What was the maximum temperature in first 10 days of Jan."""
+ + What was the maximum temperature in first 10 days of Jan.
+ + What was the temperature on Jan 9?
+ + What was the temperature on Jan 4?"""
 
 arr = []
 weather_dict = {}
@@ -30,6 +32,8 @@ def open_csv_to_dict(csv):
                 
 
 def get_average_tempeture(days):
+    """The best data structure to use here was a list because 
+    all we wanted was access of temperature elements"""
     if days > 10 or days < 0:
         raise Exception('The days input are invalid')
     
@@ -40,6 +44,8 @@ def get_average_tempeture(days):
 
 
 def get_max_tempeture(days):
+    """The best data structure to use here was a list because 
+    all we wanted was access of temperature elements"""
     if days > 10 or days < 0:
         raise Exception('The days input are invalid')
 
@@ -47,7 +53,10 @@ def get_max_tempeture(days):
     max_tempeture = max(arr[0:days])
     return print(f'The max tempeture in the first {days} days of jan was {max_tempeture}')
 
+
 def get_day_tempeture(day):
+    """The best data structure to use here was a dictionary
+    because we wanted to know temperature for specific day"""
     if day > 10 or day < 0:
         raise Exception('Invalid date')
     
@@ -55,6 +64,7 @@ def get_day_tempeture(day):
 
     day_tempeture = weather_dict[f'Jan {day}']
     return print(f'the tempeture on day {day} was {day_tempeture}')
+
 
 if __name__ == "__main__":
     # What was the average temperature in first week of Jan?
@@ -66,6 +76,6 @@ if __name__ == "__main__":
     # What was the temperature on Jan 9?
     get_day_tempeture(9)
 
-    # What was the temperature on Jan 4
+    # What was the temperature on Jan 4?
     get_day_tempeture(4)
     
