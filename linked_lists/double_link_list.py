@@ -162,24 +162,22 @@ class DoubleLinkList:
             itr = itr.next
             count += 1
 
+    def get_by_value(self, data):
+        """Get elements by value"""
+        itr = self.head
+        while itr:
+            if itr.data == data:
+                return itr
+            
+            itr = itr.next
 
-
-
-if __name__ == "__main__":
-    """Testing the implentation."""
-    ll = DoubleLinkList()
-    ll.insert_values(["banana","mango","grapes","orange"])
-    ll.print_forward()
-    ll.print_backward()
-    ll.insert_at_end("figs")
-    ll.print_forward()
-    ll.insert_at(0,"jackfruit")
-    ll.print_forward()
-    ll.insert_at(3,"dates")
-    ll.print_forward()
-    ll.insert_at(2,"kiwi")
-    ll.print_forward()
-    ll.insert_after_value('kiwi', 'apple')
-    ll.print_forward()
-    ll.remove_by_value('kiwi')
-    ll.print_forward()
+    def get_by_index(self, index):
+        """Get elements by index."""
+        itr = self.head
+        count = 0
+        while itr:
+            if count == index:
+                return itr
+            
+            itr = itr.next
+            count += 1

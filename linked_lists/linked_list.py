@@ -122,16 +122,34 @@ class LinkedList:
             itr = itr.next
             count += 1
 
-if __name__ == "__main__":
-    """Testing the implementation."""
-    ll = LinkedList()
-    ll.insert_values(['dario', 'pedro', 'juan', 'diego', 'owo'])
-    ll.print()
-    ll.insert_at('pablo', 0)
-    ll.print()
-    ll.insert_at('vicente', 2)
-    ll.print()
-    ll.insert_after_value('dario', 'kiba')
-    ll.print()
-    ll.remove_by_value('juan')
-    ll.print()
+    def get_by_index(self, index):
+        """Get element by index."""
+        if self.head is None:
+            raise Exception('Invalid index')
+
+        itr = self.head
+        count = 0
+        while itr:
+            if count == index:
+                return itr.data
+            
+            itr = itr.next
+            count += 1
+
+    def get_by_value(self, data):
+        """Get element by value."""
+        itr = self.head
+        while itr:
+            if itr.data == data:
+                return itr.data 
+
+            itr = itr.next
+
+    def get_last_node(self):
+        """Get the last element of the list."""
+        itr = self.head
+
+        while itr.next:
+            itr = itr.next
+
+        return itr
