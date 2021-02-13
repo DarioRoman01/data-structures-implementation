@@ -27,5 +27,6 @@ class TestStack(unittest.TestCase):
         self.assertTrue(s.is_empty())
 
     def test_size_method(self):
+        """Test .size() method."""
         s = self.stack
         self.assertEqual(s.size(), 1)

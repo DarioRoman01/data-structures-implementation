@@ -16,16 +16,16 @@ def is_balanced(string):
 
         elif char in match_dict.keys():
             if s.size() == 0:
-                s.push(char)
+                return print('The paranthesis are not balanced')
+
             elif s.size() != 0 and char != s.peek():
                 s.pop()
+                
             else:
                 pass
         
-    if s.size() != 0:
-        return print('False')
-    else:
-        return print('True')
+    if s.is_empty():
+        return print('The paranthesis are balanced')
 
 
 if __name__ == "__main__":
@@ -35,4 +35,5 @@ if __name__ == "__main__":
     is_balanced("((a+g))")
     is_balanced("))")
     is_balanced("[a+b]*(x+2y)*{gg+kk}")
-
+    is_balanced('({()()}[()])')
+    is_balanced('({[({[}])]})')
