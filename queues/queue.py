@@ -25,6 +25,10 @@ class MyQueue:
         """Return the size of the queue."""
         return len(self.buffer)
 
+    def front(self):
+        """return the front element in the queue"""
+        return self.buffer[-1]
+
 if __name__ == "__main__":
     pq = MyQueue()
 
@@ -44,4 +48,4 @@ if __name__ == "__main__":
         'price': 135
     })
 
-    print(pq.size())
+    print(pq.dequeue())

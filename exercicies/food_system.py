@@ -24,6 +24,7 @@ def place_orders(orders):
         time.sleep(0.5)
 
 def serve_orders():
+    """Serve the orders and remove it from the queue."""
     time.sleep(1)
     while q.size()!=0:
         print('Serving:', q.dequeue())
