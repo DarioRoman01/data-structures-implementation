@@ -31,8 +31,6 @@ class Stack:
             self.head = node
         
         return self.head.data   
-
-    
     
     def pop(self):
         """Delete the top item of the stack and return it"""
@@ -58,13 +56,3 @@ class Stack:
             itr = itr.next
 
         return count
-
-if __name__ == "__main__":
-    s = Stack()
-    print(s.push('dario'))
-    print(s.push('jose'))
-    print(s.push('diego'))
-    # print(s.peek())
-    print(s.pop())
-    print(s.size())
-

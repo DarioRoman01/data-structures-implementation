@@ -60,4 +60,13 @@ class TestGeneralTree(unittest.TestCase):
         """Test search method return true if the element is find else false."""
         t = self.tree
         self.assertTrue(t.search(20))
-        self.assertFalse(t.search(74))
+        self.assertFalse(t.search(98))
+
+    def test_delete(self):
+        """Test delete method."""
+        t = self.tree
+        t.delete(4)
+        expected = [1, 9, 17, 18, 20, 23, 34]
+        result = t.in_order_transversal()
+        self.assertEqual(result, expected)
+        self.assertFalse(t.search(4))

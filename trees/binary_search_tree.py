@@ -95,23 +95,58 @@ class BinarySearchTreeNode:
     
     def find_min(self):
         """Get the min value of the tree."""
-        list_tree = self.in_order_transversal()
-        min_value = min(list_tree)
-        return min_value
+        if self.left is None:
+            return self.data
+        else:
+            list_tree = self.in_order_transversal()
+            min_value = list_tree[0]
+            return min_value
 
     def find_max(self):
         """Get the item max value of the tree."""
-        list_tree = self.in_order_transversal()
-        max_value = max(list_tree)
-        return max_value
+        if self.right is None:
+            return self.data
+        else:
+            list_tree = self.in_order_transversal()
+            max_value = list_tree[-1]
+            return max_value
 
     def calculate_sum(self):
         """Return the sum of all the elements in the tree."""
-        list_tree = self.in_order_transversal()
-        total = sum(list_tree)
-        return total
+        if self.left is None:
+            return self.data
+        elif self.right is None:
+            return self.data
+        else:
+            list_tree = self.in_order_transversal()
+            total = sum(list_tree)
+            return total
 
+    def delete(self, value):
+        """Delete a specified item."""
+        if value < self.data:
+            if self.left:
+                self.left = self.left.delete(value)
 
+        elif value > self.data:
+            if self.right:
+                self.right = self.right.delete(value)
+
+        else:
+            if self.left is None and self.right is None:
+                return None
+            if self.left is None:
+                return self.right
+            if self.right is None:
+                return self.left
+
+            min_val = self.right.find_max()
+            self.data = min_val
+            self.right = self.right.delete(min_val)
+
+        return self
+
+    
 def build_tree(elements):
     root = BinarySearchTreeNode(elements[0])
     
@@ -119,19 +154,3 @@ def build_tree(elements):
         root.add_child(element)
 
     return root
-
-if __name__ == "__main__":
-    numbers = [17, 4, 1, 20, 9, 23, 18, 34, 18, 4]
-    numbers_tree = build_tree(numbers)
-
-    countries = ['India', 'Pakistan', 'Germany', 'USA', 'China', 'India', 'UK', 'USA']
-    country_tree = build_tree(countries)
-
-    # print('Is UK in the list? ', country_tree.search('UK'))
-    # print('Sweden is in the list? ', country_tree.search('Sweden'))
-    # print(country_tree.in_order_transversal())
-    print(numbers_tree.in_order_transversal())
-    print(numbers_tree.post_order_transversal())
-    print(numbers_tree.pre_order_transversal())
-    print(numbers_tree.find_max())
-    print(numbers_tree.calculate_sum())
