@@ -30,29 +30,6 @@ def binary_search(elements, val_to_find):
 
     return -1
 
-@time_it
-def find_all_ocurrences(elements, val_find):
-    index = binary_search(elements, val_find)
-    indexes = [index]
-
-    # find indexes in left side
-    left_index = index - 1
-    while left_index > 0:
-        if elements[left_index] == val_find:
-            indexes.append(left_index)
-        
-        left_index -= 1
-
-    # find indexes in right side
-    right_index = index + 1
-    while right_index < len(elements) - 1:
-        if elements[right_index] == val_find:
-            indexes.append(right_index)
-
-        right_index += 1
-
-    return sorted(indexes)
-
 
 def recursive_binary_search(elements, val_to_find, left_index, right_index):
     if right_index < left_index:
@@ -72,21 +49,51 @@ def recursive_binary_search(elements, val_to_find, left_index, right_index):
     return recursive_binary_search(elements, val_to_find, left_index, right_index)
 
 
+@time_it
+def find_all_ocurrences(elements, val_find):
+    index = binary_search(elements, val_find)
+    indexes = [index]
+
+    # find indexes in left side
+    left_index = index - 1
+    while left_index > 0:
+        if elements[left_index] == val_find:
+            indexes.append(left_index)
+        else:
+            break
+        
+        left_index -= 1
+
+    # find indexes in right side
+    right_index = index + 1
+    while right_index < len(elements) - 1:
+        if elements[right_index] == val_find:
+            indexes.append(right_index)
+        else:
+            break
+
+        right_index += 1
+
+    return sorted(indexes)
+
 
 if __name__ == "__main__":
+
+    """Problem 1"""
+
     # Find index of all the occurances of a number from sorted list
     # This should return 5,6,7 as indices containing number 15 in the array
     numbers = [1,4,6,9,11,15,15,15,17,21,34,34,56]
-    indexs = find_all_ocurrences(numbers, 15)
-    print(f'Number found at {indexs} using linear search')
+    indexes = find_all_ocurrences(numbers, 15)
+    print(f'Number found at {indexes} using linear search')
 
+
+    """Problem 2"""
 
     # When I try to find number 5 in below list using binary search, it doesn't work and returns me -1 index. Why is that?
-    # number_list = [1,4,6,9,10,5,7]
-    # number_to_find = 5
-
-    # index = binary_search(number_list, number_to_find)
-    # print(f'Number found at {index} using linear search')
+    number_list = [1,4,6,9,10,5,7]
+    index = binary_search(number_list, 5)
+    print(f'Number found at {index} using linear search')
 
     # because the list is not ordered, then when the program verifies that the value in the middle index
     #  of the list is greater than the value that is sought, it reduces the list to the left
